@@ -1,0 +1,28 @@
+<div class="container">
+  <button class="add" routerLink="/products/0">Add</button>
+  Sort by:
+  <select [formControl]="sortByControl">
+    <option [ngValue]="'name'">Name</option>
+    <option [ngValue]="'creationDate'">Creation Date</option>
+  </select>
+  <div class="row">
+    <div class="col-6">
+
+      <div class="product-item row" *ngFor="let product of products$ | async">
+        <div class="col-2 image">
+          <img [src]="product.image">
+        </div>
+        <div class="col-6 details">
+          <div class="title"><a [routerLink]="" (click)="displayProductDetails(product)">{{product.name}}</a></div>
+          <div class="description">{{product.description}}</div>
+        </div>
+        <div class="col-4">
+          <button class="delete" (click)="deleteProduct(product)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
